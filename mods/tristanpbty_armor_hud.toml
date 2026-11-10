@@ -29,17 +29,21 @@ tags = ["armor", "hud", "minecraft", "native", "interface", "utility"]
 screenshots = ["screenshots/tristanpbty_armor_hud/1.png"]
 
 [[versions]]
-version = "1.0.0"
-published = "2026-11-09"
+version = "1.1.0"
+published = "2026-11-10"
 game = "26.3"
-file = "tristanpbty_armor_hud-1.0.0.hnmod"
-sha256 = "f37dcedde708849ba4af53c5a8a179a2dc4ca8c44b29e1674ed2e132905ac942"
+file = "tristanpbty_armor_hud-1.1.0.hnmod"
+sha256 = "5c1e397d2c10751ae087000fad88252cb1f94749a0cde8006f92b8b69c2cbf4b"
 changelog = """
-Initial release of TristanPbty's Armor HUD!
+Release notes for 1.1.0.
 
-- Added a minimal armor HUD inspired by Uku's Armor HUD.
-- Native implementation for Horizon.
-- Clean and lightweight interface.
-- Displays the player's equipped armor pieces.
+A faithful, native reimplementation of the minimal armor HUD known from Uku's Armor HUD (a fork of BerdinskiyBear's mod): the equipped armor as item slots beside or around the HUD, with vanilla-style slot backgrounds, the enchantment glint, per-item durability, and a bobbing low-durability warning (the reference's warn.png mark, pixel for pixel) with the vanilla item-break sound. Configured in an in-game screen of plain vanilla-style buttons; the menu key (H) is rebindable in Options > Mods, which also lists the mod with a reset button.
 
-Created by TristanPbty."""
+Since the first submission:
+
+- The mod is now self-contained: the library it uses is bundled inside its own .hnmod as its own crate (tristanpbty_armor_hud_lib), so it installs, builds and runs alone. Tristan's Lib beside it is optional, and the two coexist without conflict (Horizon Mixins refuses two staged crates of the same name; the bundled copy carries its own).
+- The configuration screen was rebuilt around plain vanilla-style cycling buttons: every setting is one button that wears its value (Armor HUD: On, Slot style: Hotbar) and steps on click or scroll, with tabs and a Done button. The custom toggles, dropdowns, number fields, sliders, scale selectors and the live preview are gone (the preview overlapped the controls, which made the screen misbehave).
+- New Text color setting: the durability text in Auto (vanilla's damage scale) or one of ten fixed colors.
+- A screen closed with Escape now saves too.
+
+Pinned to Horizon Nightly 2026-11-08 (fdc87ae) and Horizon Mixins 0.6.0 (d9c83d7). Verified against the pinned sources with this exact bundle: horizon-mixins plan and apply clean, cargo check of the staged game with 0 warnings, and the game's own test suite passing (1127 passed, 0 failed, 137 ignored upstream) including the mod's 17 injected tests - staged alone and together with the standalone library mod."""
